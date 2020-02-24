@@ -1,0 +1,40 @@
+
+import React, { Component } from 'react';
+
+class BreadCrumb extends Component  {
+    constructor(props) {
+        super(props);
+
+    }
+
+    
+  render() {
+
+    return (
+        /* <!-- BreadCrumb--> */
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>{this.props.menu}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li class="active">{this.props.submenu}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        /* <!-- BreadCrumb--> */
+    );
+  }
+}
+
+export default BreadCrumb;
+
+
