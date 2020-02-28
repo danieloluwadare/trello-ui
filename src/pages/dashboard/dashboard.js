@@ -4,6 +4,7 @@ import Navbar from '../../partials/navbar'
 import BreadCrumb from '../../partials/breadcrumb'
 import {fetchAllUsers,unBlockUser,blockUser} from './dashboard-api'
 import{tasks} from './dashboard-datasource'
+import TaskForm from '../../common/TaskForm'
 // import {hasAuthority} from  '../../utils/api-utils'
 
 import {
@@ -98,27 +99,12 @@ class DashboarPage extends Component  {
     }
 
     
-    handleChange=(value)=>{
-        console.log(`selected ${value}`);
-    }
+    
 
     getAllTask = () =>{
         this.setState({isloading:true})
         this.setState({tasks:tasks})
         this.setState({isloading:false})
-
-    }
-    
-    cancelDrugModal =(drug)=>{
-        this.setState({visible:false})
-    }
-
-    viewTaskModal =()=>{
-        // this.setState({drug})
-        // this.setState({name:{value: drug.name, validateStatus:'success'}})
-        // this.setState({amount:{value: drug.amount, validateStatus:'success'}})
-        // this.setState({alias:{value: drug.alias, validateStatus:'success'}})
-        this.setState({visible:true})
     }
 
 
@@ -238,7 +224,10 @@ class DashboarPage extends Component  {
                                     <div className="card-header">
                                         <strong className="card-title">Data Table</strong>
                                         <span className="pull-right">
-                                            <a onClick={()=>{this.viewTaskModal()}}><Icon type="plus-circle" /></a>
+                                            {/* <button type="submit" className="btn pull-right btn-primary btn-flat m-b-30 m-t-30">Create</button> */}
+                                            <Button type="primary" onClick={()=>{ this.setState({visible:true})}}>
+                                                 CreateTask<Icon type="plus-circle" />
+                                            </Button>
                                         </span>
                                     </div>
                                     <div className="card-body">
@@ -249,89 +238,8 @@ class DashboarPage extends Component  {
                             </div>
 
                             <div className="col-md-12">
-                                <Modal
-                                    title="CReate Task "
-                                    visible={this.state.visible}
-                                    onOk={this.updateDrug}
-                                    // okButtonProps={{ disabled: this.isFormInvalid() }}
-                                    onCancel={this.cancelDrugModal}
-                                    okText="UPDATE"
-                                    >
-                                        <div className="row">
-                                            <Form onSubmit={this.handleSubmit} className="signup-form">
-                                            <FormItem
-                                        // label="Name"
-                                        // validateStatus={this.state.name.validateStatus}
-                                        // help={this.state.name.errorMsg}
-                                        >
-                                        <Input
-                                            size="large"
-                                            name="name"
-                                            autoComplete="off"
-                                            placeholder="Task Name name"
-                                            value={this.state.name.value}
-                                            onChange={(event) => this.handleInputChange(event, this.validateInput)}/>
-                                    </FormItem>
-
-                                    <FormItem
-                                        // label="Amount"
-                                        // validateStatus={this.state.amount.validateStatus}
-                                        // help={this.state.amount.errorMsg}
-                                        >
-                                        <Input
-                                            size="large"
-                                            name="amount"
-                                            autoComplete="off"
-                                            placeholder="Description"
-                                            value={this.state.description.value}
-                                            onChange={(event) => this.handleInputChange(event, this.validateInput)}/>
-                                    </FormItem>
-
-                                    <FormItem
-                                        // label="Alias"
-                                        // validateStatus={this.state.alias.validateStatus}
-                                        // help={this.state.alias.errorMsg}
-                                        >
-                                        <Select defaultValue="lucy" style={{ width: 120 }} onChange={this.handleChange}>
-                                        <Option value="jack">Completed</Option>
-                                            <Option value="lucy">Pending</Option>
-                                            <Option value="Yiminghe">Started</Option>
-                                            <Option value="gjjjh">Cancelled</Option>
-                                        </Select>
-                                        {/* <Input
-                                            size="large"
-                                            name="alias"
-                                            autoComplete="off"
-                                            placeholder="status"
-                                            value={this.state.status.value}
-                                            onChange={(event) => this.handleInputChange(event, this.validateInput)}/> */}
-                                    </FormItem>
-
-                                    <FormItem
-                                        // label="Alias"
-                                        // validateStatus={this.state.alias.validateStatus}
-                                        // help={this.state.alias.errorMsg}
-                                        >
-                                        <Input
-                                            size="large"
-                                            name="Target Date"
-                                            autoComplete="off"
-                                            placeholder="completion Date"
-                                            value={this.state.completionDate.value}
-                                            onChange={(event) => this.handleInputChange(event, this.validateInput)}/>
-                                    </FormItem>
-                                                
-                                                {/* <FormItem>
-                                                    <Button type="primary"
-                                                            htmlType="submit"
-                                                            size="large"
-                                                            className="signup-form-button"
-                                                            disabled={this.isFormInvalid()}>Update</Button>
-                                                </FormItem> */}
-                                            </Form>
-                                        </div>
-                                        
-                                    </Modal>
+                                {/*TAskForm Modal  */}
+                                <TaskForm visible={this.state.visible} close={()=>{this.setState({visible:false})}}></TaskForm>
                             </div>
 
 
